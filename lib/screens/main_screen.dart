@@ -1,6 +1,6 @@
-import 'package:army_combat_fitness_test/calculator_screen.dart';
-import 'package:army_combat_fitness_test/home_screen.dart';
-import 'package:army_combat_fitness_test/statistics_screen.dart';
+import 'package:army_combat_fitness_test/screens/calculator_screen.dart';
+import 'package:army_combat_fitness_test/screens/home_screen.dart';
+import 'package:army_combat_fitness_test/screens/statistics_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 

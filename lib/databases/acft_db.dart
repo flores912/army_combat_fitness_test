@@ -1,7 +1,7 @@
 import 'package:army_combat_fitness_test/models/AcftEvent.dart';
 
 class AcftDB {
-  List acftEventList = [
+  List<AcftEvent> acftEventList = [
     AcftEvent(
       eventName: '3 REPETITION MAXIMUM DEADLIFT (MDL)',
       subtitle: 'Deadlift the maximum weight possible three times',
@@ -22,14 +22,14 @@ By flexing the hips and the knees slowly, the Soldier lowers the bar to the grou
 
 Execute three continuous repetitions with the same weight. If the Soldier fails to complete three continuous repetitions under control, he or she is permitted one retest at a lower weight. If the Soldier successfully completes three continuous repetitions on the first attempt, he or she may elect an additional attempt at a higher weight. The maximum number of attempts on the MDL is two.''',
       safetyTips: '''
-Do not move hips above the shoulders.
-Prevent excessive rounding of the shoulders.
-Prevent knees collapsing inwards.
-Do not drop the weights.''',
+- Do not move hips above the shoulders.
+- Prevent excessive rounding of the shoulders.
+- Prevent knees collapsing inwards.
+- Do not drop the weights.''',
       fitnessComponents: 'Muscular strength, balance and flexibility',
       standardEquipment: '60-pound hex bar and plates',
       videoPath: 'Eef09p0NIrM',
-      eventImagePath: 'assets/deadlift.svg',
+      eventImagePath: 'lib/assets/deadlift.svg',
     ),
     AcftEvent(
       eventName: 'STANDING POWER THROW (SPT)',
@@ -59,7 +59,7 @@ Ensure the start line grader is ready when the ball retriever rolls the ball bac
           'Explosive power, balance, coordination and flexibility',
       standardEquipment: '10-pound medicine ball',
       videoPath: 'bqlgEg78qnM',
-      eventImagePath: 'assets/powerthrow.svg',
+      eventImagePath: 'lib/assets/powerthrow.svg',
     ),
     AcftEvent(
         eventName: 'HAND RELEASE PUSH-UP - ARM EXTENSION (HRP)',
@@ -91,7 +91,7 @@ The Soldier will make an immediate movement to place their hands back on the gro
         fitnessComponents: 'Muscular endurance and flexibility',
         standardEquipment: 'Level surface',
         videoPath: 'j7WEyYQRPC8',
-        eventImagePath: 'assets/pushup.svg'),
+        eventImagePath: 'lib/assets/pushup.svg'),
     AcftEvent(
         eventName: 'SPRINT-DRAG-CARRY (SDC)',
         subtitle: 'Conduct 5 x 50 meter shuttles for time - sprint, drag, lateral, carry and sprint',
@@ -123,7 +123,7 @@ Turn under control after picking up kettlebells''',
         fitnessComponents: 'Muscular endurance, muscular strength, anaerobic power and anaerobic endurance',
         standardEquipment: '2x40-pound kettlebells and 90-pound sled',
         videoPath: 'V-NIDQIk39M',
-        eventImagePath: 'assets/dragcarry.svg'
+        eventImagePath: 'lib/assets/dragcarry.svg'
     ),
     AcftEvent(
         eventName: 'PLANK (PLK)',
@@ -147,7 +147,7 @@ The plank event is terminated when the Soldier touches the floor with any part o
         fitnessComponents: 'Muscular endurance and balance',
         standardEquipment: 'Level surface',
         videoPath: 'jgBzys-j538',
-        eventImagePath: 'assets/plank.svg'),
+        eventImagePath: 'lib/assets/plank.svg'),
     AcftEvent(
         eventName: 'TWO-MILE RUN (2MR)',
         subtitle: 'Run two miles for time on a measured, generally flat outdoor course.',
@@ -157,7 +157,10 @@ The plank event is terminated when the Soldier touches the floor with any part o
         fitnessComponents: 'Aerobic endurance',
         standardEquipment: 'Two mile run route on level field, track or running surface',
         videoPath: 'LE6z_Sc9EzU',
-        eventImagePath: 'assets/run.svg'
-    )
+        eventImagePath: 'lib/assets/run.svg'
+    ),
   ];
+  List<AcftEvent>getAcftEventList(){
+    return acftEventList;
+  }
 }
