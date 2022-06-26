@@ -1,4 +1,5 @@
 import 'package:army_combat_fitness_test/models/AcftEvent.dart';
+import 'package:army_combat_fitness_test/widgets/EventIcon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -32,14 +33,8 @@ class _AcftEventDetailsState extends State<AcftEventDetails> {
         centerTitle: true,
         title: Hero(
           tag: acftEvent.eventName,
-          child: CircleAvatar(
-            child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: SvgPicture.asset(
-                acftEvent.eventImagePath,
-                color: Colors.white, //todo:define theme colors at main.dart
-              ),
-            ),
+          child: EventIcon(
+            acftEvent: acftEvent,
           ),
         ),
       )),
@@ -135,25 +130,35 @@ class _AcftEventDetailsState extends State<AcftEventDetails> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Card(
-                  color: Colors.amber,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Text(
-                            'Safety Tips',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                padding: const EdgeInsets.all(8.0),
+                child: acftEvent.safetyTips != '' //if no safety tip return empty widget
+                    ? Card(
+                        color: Colors.amber,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Safety Tips',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                acftEvent.safetyTips,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        Text(acftEvent.safetyTips),
-                      ],
-                    ),
-                  )),
-            ),
+                      )
+                    : Container()),
           ],
         ),
       ),
@@ -178,7 +183,7 @@ class _AcftEventDetailsState extends State<AcftEventDetails> {
       initialVideoId: _videoId,
       flags: const YoutubePlayerFlags(
         mute: false,
-        autoPlay: true,
+        autoPlay: false,
         disableDragSeek: false,
         loop: false,
         isLive: false,

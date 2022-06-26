@@ -1,6 +1,10 @@
 import 'package:army_combat_fitness_test/models/AcftEvent.dart';
+import 'package:army_combat_fitness_test/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
+import 'EventIcon.dart';
 
 class EventCard extends StatelessWidget {
   final AcftEvent acftEvent;
@@ -14,39 +18,34 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        SizedBox(
-          height: 36,
-          width: 36,
-          child: Hero(
-            tag: acftEvent.eventName,
-            child: CircleAvatar(
-              child: Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: SvgPicture.asset(
-                  acftEvent.eventImagePath,color: Colors.white,//todo:define theme colors at main.dart
+        GestureDetector(
+          onTap: () => onTap(),
+          child: Card(
+          margin: const EdgeInsets.all(0),
+          child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                title: Text(
+                  acftEvent.eventName,
+                ),
+                subtitle: Text(acftEvent.subtitle),
+                leading: Hero(
+                  tag: acftEvent.eventName,
+                  child: EventIcon(acftEvent: acftEvent),
                 ),
               ),
             ),
           ),
         ),
-        Expanded(
-          child: GestureDetector(
-            onTap:()=> onTap(),
-            child: Card(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text(
-                    acftEvent.eventName,
-                  ),
-                  subtitle: Text(acftEvent.subtitle),
-                ),
-              ),
-            ),
-          ),
-        ),
+        acftEvent.eventName != 'TWO-MILE RUN (2MR)'
+            ? Container(
+          width: 1,
+                height: 16,
+                color: MyThemes.kAccentColor,
+              )
+            : Container()
       ],
     );
   }
