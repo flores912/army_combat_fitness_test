@@ -1,8 +1,8 @@
-import 'package:army_combat_fitness_test/models/AcftEvent.dart';
+import 'package:army_combat_fitness_test/models/acft_event.dart';
 import 'package:army_combat_fitness_test/screens/acft_event_details.dart';
-import 'package:army_combat_fitness_test/repositories/AcftEventsRepository.dart';
+import 'package:army_combat_fitness_test/repositories/acft_events_repository.dart';
 import 'package:flutter/material.dart';
-import '../widgets/EventCard.dart';
+import '../widgets/event_card.dart';
 import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {

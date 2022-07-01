@@ -1,10 +1,10 @@
-import 'package:army_combat_fitness_test/models/AcftEvent.dart';
+import 'package:army_combat_fitness_test/models/acft_event.dart';
 import 'package:army_combat_fitness_test/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import 'EventIcon.dart';
+import 'event_icon.dart';
 
 class EventCard extends StatelessWidget {
   final AcftEvent acftEvent;

@@ -1,5 +1,5 @@
-import 'package:army_combat_fitness_test/models/AcftEvent.dart';
-import 'package:army_combat_fitness_test/widgets/EventIcon.dart';
+import 'package:army_combat_fitness_test/models/acft_event.dart';
+import 'package:army_combat_fitness_test/widgets/event_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
