@@ -2,7 +2,6 @@ import 'package:army_combat_fitness_test/models/mdlCalculator.dart';
 import 'package:army_combat_fitness_test/repositories/acft_events_repository.dart';
 import 'package:army_combat_fitness_test/widgets/event_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../models/acft_event.dart';
 
@@ -33,7 +32,6 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   late int maxWeight;
 
 
-
   @override
   Widget build(BuildContext context) {
     List<AcftEvent> acftEventsList = acftEventsRepository.acftEventsList;
@@ -46,6 +44,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     mdlCalculator = MdlCalculator(selectedGender!, selectedAge!);
     maxWeight = mdlCalculator.getMaxWeight();
     minWeight = mdlCalculator.getMinWeight();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -56,7 +55,6 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
-          primary: true,
           children: [
             Row(
               children: [
@@ -132,6 +130,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     maxWeight = mdlCalculator.getMaxWeight();
     minWeight = mdlCalculator.getMinWeight();
     currentWeight = minWeight.toDouble();
+    currentMdlPoints = mdlCalculator.calculatePoints(currentWeight.toInt());
   }
 
   Widget buildCalculatorSlider(AcftEvent acftEvent) {
@@ -152,11 +151,11 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             Expanded(
               child: Column(
                 children: [
-                  Text(currentWeight.toInt().toString()),
-                  SfSlider(
+                  Text('${currentWeight.toInt()} lbs'),
+                  Slider(
                     value:currentWeight,
-                    min: minWeight,
-                    max:maxWeight,
+                    min: minWeight.toDouble(),
+                    max:maxWeight.toDouble(),
                     onChanged: (value) {
                       setState((){
                         currentWeight = value;
@@ -167,7 +166,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                 ],
               ),
             ),
-            Text(currentMdlPoints.toString()),
+            Text('$currentMdlPoints pts'),
           ],
         ),
       ),
