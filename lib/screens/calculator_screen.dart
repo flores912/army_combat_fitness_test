@@ -1,3 +1,4 @@
+import 'package:army_combat_fitness_test/models/mdlCalculator.dart';
 import 'package:army_combat_fitness_test/repositories/acft_events_repository.dart';
 import 'package:army_combat_fitness_test/widgets/event_icon.dart';
 import 'package:flutter/material.dart';
@@ -13,18 +14,38 @@ class CalculatorScreen extends StatefulWidget {
 }
 
 class _CalculatorScreenState extends State<CalculatorScreen> {
+
+  //starting values
+
+
   AcftEventsRepository acftEventsRepository = AcftEventsRepository();
+  int? selectedAge = 17;
+  String? selectedGender = 'male';
+
+//for mdl
+  double currentWeight = 80;
+  int currentMdlPoints = 0 ;
+
+  late MdlCalculator mdlCalculator;
+
+  late int minWeight;
+
+  late int maxWeight;
+
+
 
   @override
   Widget build(BuildContext context) {
-    List<AcftEvent> acftEvents = acftEventsRepository.acftEventsList;
+    List<AcftEvent> acftEventsList = acftEventsRepository.acftEventsList;
 
     List<String> genders = acftEventsRepository.genders;
-    String? selectedGender = 'male';
 
     List<int> ages = acftEventsRepository.ages;
-    int? selectedAge = 17;
 
+
+    mdlCalculator = MdlCalculator(selectedGender!, selectedAge!);
+    maxWeight = mdlCalculator.getMaxWeight();
+    minWeight = mdlCalculator.getMinWeight();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -54,7 +75,11 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                             )
                             .toList(),
                         onChanged: (gender) =>
-                            setState(() => selectedGender = gender)),
+                            setState(() {
+                              selectedGender = gender;
+                              //reset calculator
+                              resetCalculators();
+                            })),
                   ),
                 ),
                 Expanded(
@@ -73,7 +98,11 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                               ),
                             )
                             .toList(),
-                        onChanged: (age) => setState(() => selectedAge = age)),
+                        onChanged: (age) => setState(() {
+                          selectedAge = age;
+                          //reset calculators
+                          resetCalculators();
+                        })),
                   ),
                 ),
               ],
@@ -81,49 +110,68 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             ListView.builder(
                 shrinkWrap: true,
                 primary: false,
-                itemCount: acftEvents.length,
+                itemCount: acftEventsList.length,
                 itemBuilder: (context, index) {
-                  final acftEvent = acftEvents[index];
-                  return CalculatorSlider(acftEvent: acftEvent);
+                  final acftEvent = acftEventsList[index];
+                  return
+                    buildCalculatorSlider(acftEvent);
                 })
           ],
         ),
       ),
     );
   }
-}
 
-class CalculatorSlider extends StatelessWidget {
-  const CalculatorSlider({
-    Key? key,
-    required this.acftEvent,
-  }) : super(key: key);
+  void resetCalculators() {
+    //here you will input logic to reset all calculators
+    resetMDLCalculator();
+  }
 
-  final AcftEvent acftEvent;
+  void resetMDLCalculator() {
+    mdlCalculator = MdlCalculator(selectedGender!, selectedAge!);
+    maxWeight = mdlCalculator.getMaxWeight();
+    minWeight = mdlCalculator.getMinWeight();
+    currentWeight = minWeight.toDouble();
+  }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget buildCalculatorSlider(AcftEvent acftEvent) {
+    Widget slider = Container();
+    if(acftEvent.eventName == '3 REPETITION MAXIMUM DEADLIFT (MDL)'){
+      slider =  buildMdlCalculatorSlider(acftEvent);
+    }
+    return slider;
+  }
+
+  Card buildMdlCalculatorSlider(AcftEvent acftEvent) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            EventIcon(acftEvent: acftEvent),
+            EventIcon(acftEvent:acftEvent),
             Expanded(
               child: Column(
                 children: [
-                  Text('value'),
+                  Text(currentWeight.toInt().toString()),
                   SfSlider(
-                    onChanged: (value) {},
-                    value: .1,
+                    value:currentWeight,
+                    min: minWeight,
+                    max:maxWeight,
+                    onChanged: (value) {
+                      setState((){
+                        currentWeight = value;
+                        currentMdlPoints = MdlCalculator(selectedGender!, selectedAge!).calculatePoints(currentWeight.round().toInt());
+                      });
+                    },
                   ),
                 ],
               ),
             ),
-            Text('score'),
+            Text(currentMdlPoints.toString()),
           ],
         ),
       ),
     );
   }
 }
+

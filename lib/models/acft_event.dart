@@ -22,4 +22,5 @@ class AcftEvent {
     required this.eventImagePath
   });
 
+
 }
