@@ -1,7 +1,12 @@
+import 'package:army_combat_fitness_test/models/age_group.dart';
+import 'package:army_combat_fitness_test/models/gender.dart';
+
 class MdlCalculator {
   final String gender;
   final int age;
+  //TODO fix 0 points expression (weight<min)
 //TODO: REFACTOR AND SIMPLIFY AS MUCH AS POSSIBLE
+  //todo - refactor age group expression with AgeGroup class const
   MdlCalculator(this.gender, this.age);
   int calculatePoints(int weight) {
     int points = 0;
@@ -39,7 +44,7 @@ class MdlCalculator {
   }
 
   int ages62andUpChart(int weight, int points) {
-    if (gender == 'male' && age >= 62) {
+    if (gender == Gender.male && age >= 62) {
       if (weight >= 230) {
         points = 100;
       }
@@ -72,7 +77,7 @@ class MdlCalculator {
     }
 
     //FEMALE
-    if (gender == 'female' &&  age >= 62) {
+    if (gender == Gender.female && age >= 62) {
       if (weight >= 170) {
         points = 100;
       }
@@ -96,7 +101,7 @@ class MdlCalculator {
   }
 
   int ages57to61Chart(int weight, int points) {
-    if (gender == 'male' && age >= 57 && age <= 61) {
+    if (gender == Gender.male && age >= 57 && age <= 61) {
       if (weight >= 250) {
         points = 100;
       }
@@ -135,7 +140,7 @@ class MdlCalculator {
     }
 
     //FEMALE
-    if (gender == 'female' && age >= 57 && age <= 61) {
+    if (gender == Gender.female && age >= 57 && age <= 61) {
       if (weight >= 170) {
         points = 100;
       }
@@ -159,7 +164,7 @@ class MdlCalculator {
   }
 
   int ages52to56Chart(int weight, int points) {
-     if (gender == 'male' && age >= 52 && age <= 56) {
+    if (gender == Gender.male && age >= 52 && age <= 56) {
       if (weight >= 290) {
         points = 100;
       }
@@ -210,7 +215,7 @@ class MdlCalculator {
     }
 
     //FEMALE
-    if (gender == 'female' && age >= 52 && age <= 56) {
+    if (gender == Gender.female && age >= 52 && age <= 56) {
       if (weight >= 190) {
         points = 100;
       }
@@ -240,7 +245,7 @@ class MdlCalculator {
   }
 
   int ages47to51Chart(int weight, int points) {
-    if (gender == 'male' && age >= 47 && age <= 51) {
+    if (gender == Gender.male && age >= 47 && age <= 51) {
       if (weight >= 330) {
         points = 100;
       }
@@ -303,7 +308,7 @@ class MdlCalculator {
     }
 
     //FEMALE
-    if (gender == 'female' && age >= 47 && age <= 51) {
+    if (gender == Gender.female && age >= 47 && age <= 51) {
       if (weight >= 190) {
         points = 100;
       }
@@ -333,7 +338,7 @@ class MdlCalculator {
   }
 
   int ages42to46Chart(int weight, int points) {
-    if (gender == 'male' && age >= 42 && age <= 46) {
+    if (gender == Gender.male && age >= 42 && age <= 46) {
       if (weight >= 340) {
         points = 100;
       }
@@ -399,7 +404,7 @@ class MdlCalculator {
     }
 
     //FEMALE
-    if (gender == 'female' && age >= 42 && age <= 46) {
+    if (gender == Gender.female && age >= 42 && age <= 46) {
       if (weight >= 210) {
         points = 100;
       }
@@ -435,7 +440,7 @@ class MdlCalculator {
   }
 
   int ages37to41Chart(int weight, int points) {
-    if (gender == 'male' && age >= 37 && age <= 41) {
+    if (gender == Gender.male && age >= 37 && age <= 41) {
       if (weight >= 340) {
         points = 100;
       }
@@ -501,7 +506,7 @@ class MdlCalculator {
     }
 
     //FEMALE
-    if (gender == 'female' && age >= 37 && age <= 41) {
+    if (gender == Gender.female && age >= 37 && age <= 41) {
       if (weight >= 210) {
         points = 100;
       }
@@ -537,7 +542,7 @@ class MdlCalculator {
   }
 
   int ages32to36Chart(int weight, int points) {
-    if (gender == 'male' && age >= 32 && age <= 36) {
+    if (gender == Gender.male && age >= 32 && age <= 36) {
       if (weight >= 340) {
         points = 100;
       }
@@ -603,7 +608,7 @@ class MdlCalculator {
     }
 
     //FEMALE
-    if (gender == 'female' && age >= 32 && age <= 36) {
+    if (gender == Gender.female && age >= 32 && age <= 36) {
       if (weight >= 230) {
         points = 100;
       }
@@ -644,7 +649,7 @@ class MdlCalculator {
   }
 
   int ages27to31Chart(int weight, int points) {
-    if (gender == 'male' && age >= 27 && age <= 31) {
+    if (gender == Gender.male && age >= 27 && age <= 31) {
       if (weight >= 340) {
         points = 100;
       }
@@ -710,7 +715,7 @@ class MdlCalculator {
     }
 
     //FEMALE
-    if (gender == 'female' && age >= 27 && age <= 31) {
+    if (gender == Gender.female && age >= 27 && age <= 31) {
       if (weight >= 230) {
         points = 100;
       }
@@ -751,7 +756,7 @@ class MdlCalculator {
   }
 
   int ages22to26Chart(int weight, int points) {
-    if (gender == 'male' && age >= 22 && age <= 26) {
+    if (gender == Gender.male && age >= 22 && age <= 26) {
       if (weight >= 340) {
         points = 100;
       }
@@ -814,7 +819,7 @@ class MdlCalculator {
     }
 
     //FEMALE
-    if (gender == 'female' && age >= 22 && age <= 26) {
+    if (gender == Gender.female && age >= 22 && age <= 26) {
       if (weight >= 230) {
         points = 100;
       }
@@ -855,7 +860,7 @@ class MdlCalculator {
   }
 
   int ages17to21Chart(int weight, int points) {
-    if (gender == 'male' && age >= 17 && age <= 21) {
+    if (gender == Gender.male && AgeGroup.is17to21(age)) {
       if (weight >= 340) {
         points = 100;
       }
@@ -921,7 +926,7 @@ class MdlCalculator {
     }
 
     //FEMALE
-    if (gender == 'female' && age >= 17 && age <= 21) {
+    if (gender == Gender.female && AgeGroup.is17to21(age)) {
       if (weight >= 210) {
         points = 100;
       }
@@ -1016,57 +1021,52 @@ class MdlCalculator {
   }
 
   int femaleMaxWeights(int maxWeight) {
-    if(gender == 'female'&& age >= 17 && age <= 21){
+    if (gender == 'female' && age >= 17 && age <= 21) {
       maxWeight = 210;
     }
-    if(gender == 'female'&& age >= 22 && age <= 36){
+    if (gender == 'female' && age >= 22 && age <= 36) {
       maxWeight = 230;
     }
-    if(gender == 'female'&& age >= 37 && age <= 46){
+    if (gender == 'female' && age >= 37 && age <= 46) {
       maxWeight = 210;
     }
-    if(gender == 'female'&& age >= 47 && age <= 56){
+    if (gender == 'female' && age >= 47 && age <= 56) {
       maxWeight = 190;
     }
-    if(gender == 'female'&& age >= 57){
+    if (gender == 'female' && age >= 57) {
       maxWeight = 170;
     }
     return maxWeight;
   }
 
   int maleMaxWeights(int maxWeight) {
-    if(gender == 'male' && age >= 17 && age <= 46){
+    if (gender == 'male' && age >= 17 && age <= 46) {
       maxWeight = 340;
     }
-    if(gender == 'male'&& age >= 47 && age <= 51){
+    if (gender == 'male' && age >= 47 && age <= 51) {
       maxWeight = 330;
     }
-    if(gender == 'male'&& age >= 52 && age <= 56){
+    if (gender == 'male' && age >= 52 && age <= 56) {
       maxWeight = 290;
     }
-    if(gender == 'male'&& age >= 57 && age <= 61){
+    if (gender == 'male' && age >= 57 && age <= 61) {
       maxWeight = 250;
     }
-    if(gender == 'male'&& age >= 62){
+    if (gender == 'male' && age >= 62) {
       maxWeight = 230;
     }
     return maxWeight;
   }
 
-
-
   int getMinWeight() {
     int minWeight = 0;
 
-    if(gender=='male') {
+    if (gender == 'male') {
       minWeight = 80;
-    }else{
+    } else {
       minWeight = 60;
     }
 
-
     return minWeight;
   }
-
-
 }

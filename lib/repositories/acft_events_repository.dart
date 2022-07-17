@@ -1,7 +1,7 @@
 import 'package:army_combat_fitness_test/databases/acft_db.dart';
 import 'package:army_combat_fitness_test/models/acft_event.dart';
 
-import '../models/mdlCalculator.dart';
+import '../models/mdl_calculator.dart';
 
 class AcftEventsRepository {
 

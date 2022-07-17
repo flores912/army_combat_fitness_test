@@ -1,6 +1,6 @@
 import 'package:army_combat_fitness_test/models/acft_event.dart';
 
-import '../models/mdlCalculator.dart';
+import '../models/mdl_calculator.dart';
 
 class AcftDB {
   List<AcftEvent> acftEventList = [
