@@ -9,11 +9,7 @@ class SdcCalculator{
 
   int calculatePoints(Duration time){
 
-    //Compares this Duration to other, returning zero if the values are equal.
-    //
-    // Returns a negative integer if this Duration is shorter than other, or a positive integer if it is longer.
-    //
-    // A negative Duration is always considered shorter than a positive one.
+
     int points = 0;
 
     points = ages17to21(time, points);
@@ -23,6 +19,11 @@ class SdcCalculator{
   }
 
   int ages17to21(Duration time, int points) {
+    //Compares this Duration to other, returning zero if the values are equal.
+    //
+    // Returns a negative integer if this Duration is shorter than other, or a positive integer if it is longer.
+    //
+    // A negative Duration is always considered shorter than a positive one.
     if(gender == Gender.male && AgeGroup.is17to21(age)) {
       if (time.compareTo(Duration(minutes: 1, seconds: 29)) <= 0) {
         points = 100;
@@ -323,7 +324,7 @@ class SdcCalculator{
       if (time.compareTo(Duration(minutes: 3, seconds: 27)) <= 0 && time.compareTo(Duration(minutes: 3, seconds: 26)) > 0) {
         points = 1;
       }
-      if (time.compareTo(Duration(minutes: 3, seconds: 28)) <= 0 && time.compareTo(Duration(minutes: 3, seconds: 27)) > 0) {
+      if (time.compareTo(Duration(minutes: 3, seconds: 28)) >=0) {
         points = 0;
       }
     }

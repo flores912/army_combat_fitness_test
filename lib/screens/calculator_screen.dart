@@ -1,5 +1,6 @@
 import 'package:army_combat_fitness_test/models/hrp_calculator.dart';
 import 'package:army_combat_fitness_test/models/mdl_calculator.dart';
+import 'package:army_combat_fitness_test/models/plk_calculator.dart';
 import 'package:army_combat_fitness_test/models/spt_calculator.dart';
 import 'package:army_combat_fitness_test/repositories/acft_events_repository.dart';
 import 'package:army_combat_fitness_test/theme_provider.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 
 import '../models/gender.dart';
 import '../models/acft_event.dart';
+import '../models/run_calculator.dart';
 import '../models/sdc_calculator.dart';
 
 class CalculatorScreen extends StatefulWidget {
@@ -34,6 +36,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   late SptCalculator sptCalculator;
   late HrpCalculator hrpCalculator;
   late SdcCalculator sdcCalculator;
+  late PlkCalculator plkCalculator;
+  late RunCalculator runCalculator;
 
 
 //for mdl
@@ -69,6 +73,22 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
 
   late Duration maxSdcTime;
 
+  //for plk
+  Duration currentPlkTime = Duration(minutes: 1, seconds: 00);
+  int currentPlkPoints = 0;
+
+  late Duration minPlkTime;
+
+  late Duration maxPlkTime;
+
+  //for 2mr
+  Duration currentRunTime = Duration(minutes: 24, seconds: 00);
+  int currentRunPoints = 0;
+
+  late Duration minRunTime;
+
+  late Duration maxRunTime;
+
   @override
   Widget build(BuildContext context) {
     List<AcftEvent> acftEventsList = acftEventsRepository.acftEventsList;
@@ -93,6 +113,14 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     sdcCalculator = SdcCalculator(selectedGender, selectedAge);
     maxSdcTime = sdcCalculator.getMaxTime();
     minSdcTime = sdcCalculator.getMinTime();
+
+    plkCalculator = PlkCalculator(selectedGender, selectedAge);
+    maxPlkTime = plkCalculator.getMaxTime();
+    minPlkTime = plkCalculator.getMinTime();
+
+    runCalculator = RunCalculator(selectedGender, selectedAge);
+    maxRunTime = runCalculator.getMaxTime();
+    minRunTime = runCalculator.getMinTime();
 
     return Scaffold(
       appBar: AppBar(
@@ -175,6 +203,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     resetSptCalculator();
     resetHrpCalculator();
     resetSdcCalculator();
+    resetPlkCalculator();
+    resetRunCalculator();
   }
 
   void resetMDLCalculator() {
@@ -184,7 +214,6 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     currentWeight = minWeight.toDouble();
     currentMdlPoints = mdlCalculator.calculatePoints(currentWeight.toInt());
   }
-
   void resetSptCalculator() {
     sptCalculator = SptCalculator(selectedGender, selectedAge);
     maxMeters = sptCalculator.getMaxMeters();
@@ -206,6 +235,21 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     currentSdcTime = maxSdcTime;
     currentSdcPoints = sdcCalculator.calculatePoints(currentSdcTime);
   }
+  void resetPlkCalculator() {
+    plkCalculator= PlkCalculator(selectedGender, selectedAge);
+    maxPlkTime = plkCalculator.getMaxTime();
+    minPlkTime = plkCalculator.getMinTime();
+    currentPlkTime = minPlkTime;
+    currentPlkPoints = plkCalculator.calculatePoints(currentPlkTime);
+  }
+  void resetRunCalculator() {
+    runCalculator = RunCalculator(selectedGender, selectedAge);
+    maxRunTime = runCalculator.getMaxTime();
+    minRunTime = runCalculator.getMinTime();
+    currentRunTime = maxRunTime;
+    currentRunPoints = runCalculator.calculatePoints(currentRunTime);
+  }
+
 
   Widget buildCalculatorSlider(AcftEvent acftEvent) {
     Widget slider = Container();
@@ -221,6 +265,13 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     if(acftEvent.eventName == 'SPRINT-DRAG-CARRY (SDC)'){
       slider =  buildSdcCalculatorSlider(acftEvent);
     }
+    if(acftEvent.eventName == 'PLANK (PLK)'){
+      slider =  buildPlkCalculatorSlider(acftEvent);
+    }
+    if(acftEvent.eventName == 'TWO-MILE RUN (2MR)'){
+      slider =  buildRunCalculatorSlider(acftEvent);
+    }
+
     return slider;
   }
 
@@ -230,7 +281,15 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            EventIcon(acftEvent:acftEvent),
+            Column(
+              children: [
+                EventIcon(acftEvent:acftEvent),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text('MDL',textAlign: TextAlign.start,),
+                ),
+              ],
+            ),
             Expanded(
               child: Column(
                 children: [
@@ -242,7 +301,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     onChanged: (value) {
                       setState((){
                         currentWeight = value;
-                        currentMdlPoints = MdlCalculator(selectedGender, selectedAge).calculatePoints(currentWeight.round().toInt());
+                        currentMdlPoints = mdlCalculator.calculatePoints(currentWeight.round().toInt());
                       });
                     },
                   ),
@@ -261,7 +320,15 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            EventIcon(acftEvent:acftEvent),
+            Column(
+              children: [
+                EventIcon(acftEvent:acftEvent),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text('SPT',textAlign: TextAlign.start,),
+                ),
+              ],
+            ),
             Expanded(
               child: Column(
                 children: [
@@ -273,7 +340,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     onChanged: (value) {
                       setState((){
                         currentMeters = double.parse((value).toStringAsFixed(1));//round to 1 decimal place
-                        currentSptPoints = SptCalculator(selectedGender, selectedAge).calculatePoints(currentMeters);
+                        currentSptPoints = sptCalculator.calculatePoints(currentMeters);
                       });
                     },
                   ),
@@ -292,7 +359,15 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            EventIcon(acftEvent:acftEvent),
+            Column(
+              children: [
+                EventIcon(acftEvent:acftEvent),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text('HRP',textAlign: TextAlign.start,),
+                ),
+              ],
+            ),
             Expanded(
               child: Column(
                 children: [
@@ -304,7 +379,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                     onChanged: (value) {
                       setState((){
                         currentReps = value.round().toInt();
-                        currentHrpPoints = HrpCalculator(selectedGender, selectedAge).calculatePoints(currentReps.round().toInt());
+                        currentHrpPoints = hrpCalculator.calculatePoints(currentReps.round().toInt());
                       });
                     },
                   ),
@@ -323,11 +398,19 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            EventIcon(acftEvent:acftEvent),
+            Column(
+              children: [
+                EventIcon(acftEvent:acftEvent),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text('SDC',textAlign: TextAlign.start,),
+                ),
+              ],
+            ),
             Expanded(
               child: Column(
                 children: [
-                  Text('${currentSdcTime.inMinutes.remainder(60)}:${currentSdcTime.inSeconds.remainder(60)}'),
+                  Text('${currentSdcTime.inMinutes.remainder(60).toString().padLeft(2, '0')}:${currentSdcTime.inSeconds.remainder(60).toString().padLeft(2, '0')}'),
                   //reversed due to min and max values
                   Directionality(
                     textDirection: TextDirection.rtl,
@@ -335,14 +418,13 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                       thumbColor: MyThemes.kAccentColor,
                       inactiveColor: MyThemes.kAccentColor,
                       activeColor: MyThemes.kAccentColor.withOpacity(.1),
-                      //todo:reverse min and max in slider
                       value:currentSdcTime.inSeconds.toDouble(),
                       min:minSdcTime.inSeconds.toDouble(),
                       max:maxSdcTime.inSeconds.toDouble(),
                       onChanged: (value) {
                         setState((){
                           currentSdcTime = Duration(seconds: value.toInt());
-                          currentSdcPoints = SdcCalculator(selectedGender, selectedAge).calculatePoints(currentSdcTime);
+                          currentSdcPoints = sdcCalculator.calculatePoints(currentSdcTime);
                         });
                       },
                     ),
@@ -356,6 +438,92 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       ),
     );
   }
+  Card buildPlkCalculatorSlider(AcftEvent acftEvent) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Column(
+              children: [
+                EventIcon(acftEvent:acftEvent),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text('PLK',textAlign: TextAlign.start,),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  Text('${currentPlkTime.inMinutes.remainder(60).toString().padLeft(2, '0')}:${currentPlkTime.inSeconds.remainder(60).toString().padLeft(2, '0')}'),
+                  Slider(
+                    value:currentPlkTime.inSeconds.toDouble(),
+                    min:minPlkTime.inSeconds.toDouble(),
+                    max:maxPlkTime.inSeconds.toDouble(),
+                    onChanged: (value) {
+                      setState((){
+                        currentPlkTime = Duration(seconds: value.toInt());
+                        currentPlkPoints = plkCalculator.calculatePoints(currentPlkTime);
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Text('$currentPlkPoints pts'),
+          ],
+        ),
+      ),
+    );
+  }
+  Card buildRunCalculatorSlider(AcftEvent acftEvent) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Column(
+              children: [
+                EventIcon(acftEvent:acftEvent),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text('2MR',textAlign: TextAlign.start,),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Column(
+                children: [
+                  Text('${currentRunTime.inMinutes.remainder(60).toString().padLeft(2, '0')}:${currentRunTime.inSeconds.remainder(60).toString().padLeft(2, '0')}'),
+                  //reversed due to min and max values
+                  Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: Slider(
+                      thumbColor: MyThemes.kAccentColor,
+                      inactiveColor: MyThemes.kAccentColor,
+                      activeColor: MyThemes.kAccentColor.withOpacity(.1),
+                      value:currentRunTime.inSeconds.toDouble(),
+                      min:minRunTime.inSeconds.toDouble(),
+                      max:maxRunTime.inSeconds.toDouble(),
+                      onChanged: (value) {
+                        setState((){
+                          currentRunTime = Duration(seconds: value.toInt());
+                          currentRunPoints = runCalculator.calculatePoints(currentRunTime);
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Text('$currentRunPoints pts'),
+          ],
+        ),
+      ),
+    );
+  }
+
 
 
 }
