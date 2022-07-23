@@ -39,7 +39,7 @@ class EventCard extends StatelessWidget {
             ),
           ),
         ),
-        acftEvent.eventName != 'TWO-MILE RUN (2MR)'
+        acftEvent.eventName != 'TWO-MILE RUN (2MR)' && acftEvent.eventName !='2.5-MILE WALK'
             ? Container(
           width: 1,
                 height: 16,

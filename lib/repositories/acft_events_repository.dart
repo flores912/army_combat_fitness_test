@@ -8,7 +8,11 @@ class AcftEventsRepository {
   AcftDB acftDB = AcftDB();
 
   List<AcftEvent> get acftEventsList => AcftDB().acftEventList;
+  List<AcftEvent> get altAcftEventsList => AcftDB().altAcftEventList;
+
   List<String> get genders => AcftDB().genders;
+  List<String> get cardioEvents => AcftDB().cardioEvents;
+
   List<int> get ages => AcftDB().ages;
 
 

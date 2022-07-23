@@ -169,8 +169,84 @@ The plank event is terminated when the Soldier touches the floor with any part o
         videoPath: 'LE6z_Sc9EzU',
         eventImagePath: 'lib/assets/run.svg'),
   ];
+  List<AcftEvent>altAcftEventList=[
+    AcftEvent(
+      eventName: '2.5-MILE WALK',
+      subtitle:
+      'Alternate events for Soldiers unable to run due to permanent profile.',
+      description:
+      'If you are not able to perform the 2 Mile Run event you will have to choose one of the following Alternate Events: 2.5-MILE WALK, 5K ROW, 12K BIKE, or 1K SWIM',
+      instructions:
+      'There are no exceptions to the modified ACFT testing sequence or protocols.Soldiers on permanent profiles must be cleared by the medical provider before taking the modified ACFT.The stationary row and bike machines must have: '
+          '''
+-Adjustable resistance and must be available for training and testing.
+-Seat handles and foot straps (must be adjusted to accommodate soldiers of different sizes).
+-An odometer.Good working order / calibrated prior to testing''',
+      safetyTips: '',
+      fitnessComponents: 'Aerobic endurance',
+      standardEquipment: '2.5 mile walk route on level field, track or running surface.',
+      videoPath: 'LE6z_Sc9EzU',
+      eventImagePath: ''),
+    AcftEvent(
+        eventName: '2.5-MILE WALK',
+        subtitle:
+        'Alternate events for Soldiers unable to run due to permanent profile.',
+        description:
+        'If you are not able to perform the 2 Mile Run event you will have to choose one of the following Alternate Events: 2.5-MILE WALK, 5K ROW, 12K BIKE, or 1K SWIM',
+        instructions:
+        'There are no exceptions to the modified ACFT testing sequence or protocols.Soldiers on permanent profiles must be cleared by the medical provider before taking the modified ACFT.The stationary row and bike machines must have: '
+            '''
+-Adjustable resistance and must be available for training and testing.
+-Seat handles and foot straps (must be adjusted to accommodate soldiers of different sizes).
+-An odometer.Good working order / calibrated prior to testing''',
+        safetyTips: '',
+        fitnessComponents: 'Aerobic endurance',
+        standardEquipment:
+        'Level fiel',
+        videoPath: 'LE6z_Sc9EzU',
+        eventImagePath: ''),
+    AcftEvent(
+        eventName: '2.5-MILE WALK',
+        subtitle:
+        'Alternate events for Soldiers unable to run due to permanent profile.',
+        description:
+        'If you are not able to perform the 2 Mile Run event you will have to choose one of the following Alternate Events: 2.5-MILE WALK, 5K ROW, 12K BIKE, or 1K SWIM',
+        instructions:
+        'There are no exceptions to the modified ACFT testing sequence or protocols.Soldiers on permanent profiles must be cleared by the medical provider before taking the modified ACFT.The stationary row and bike machines must have: '
+            '''
+-Adjustable resistance and must be available for training and testing.
+-Seat handles and foot straps (must be adjusted to accommodate soldiers of different sizes).
+-An odometer.Good working order / calibrated prior to testing''',
+        safetyTips: '',
+        fitnessComponents: 'Aerobic endurance',
+        standardEquipment: '2.5 mile walk route on level field, track or running surface.',
+        videoPath: 'LE6z_Sc9EzU',
+        eventImagePath: ''),
+    AcftEvent(
+        eventName: '2.5-MILE WALK',
+        subtitle:
+        'Alternate events for Soldiers unable to run due to permanent profile.',
+        description:
+        'If you are not able to perform the 2 Mile Run event you will have to choose one of the following Alternate Events: 2.5-MILE WALK, 5K ROW, 12K BIKE, or 1K SWIM',
+        instructions:
+        'There are no exceptions to the modified ACFT testing sequence or protocols.Soldiers on permanent profiles must be cleared by the medical provider before taking the modified ACFT.The stationary row and bike machines must have: '
+            '''
+-Adjustable resistance and must be available for training and testing.
+-Seat handles and foot straps (must be adjusted to accommodate soldiers of different sizes).
+-An odometer.Good working order / calibrated prior to testing''',
+        safetyTips: '',
+        fitnessComponents: 'Aerobic endurance',
+        standardEquipment:
+        'Level fiel',
+        videoPath: 'LE6z_Sc9EzU',
+        eventImagePath: ''),
+
+  ];
 
   List<String> genders = ['male', 'female'];
 
   List<int> ages = [for (var i = 17; i <= 62; i++) i];
+
+  List<String> cardioEvents = ['2MR', '2.5-MILE WALK','5K ROW','12K BIKE','1K SWIM'];
+
 }

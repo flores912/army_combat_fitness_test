@@ -27,8 +27,8 @@ class _MainScreenState extends State<MainScreen> {
         children: screens,
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        animationCurve: Curves.easeInOutBack,
-        animationDuration: const Duration(milliseconds: 500),
+        animationCurve: Curves.easeIn,
+        animationDuration: const Duration(milliseconds: 200),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         color:Theme.of(context).bottomAppBarColor,
         index: currentIndex,

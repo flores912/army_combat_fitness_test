@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 
 import '../models/acft_event.dart';
 
@@ -18,7 +17,7 @@ class EventIcon extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SvgPicture.asset(color:Theme.of(context).iconTheme.color,
+        child: acftEvent.eventName=='2.5-MILE WALK'?Icon(Icons.directions_walk,color:Theme.of(context).iconTheme.color,):SvgPicture.asset(color:Theme.of(context).iconTheme.color,
           acftEvent.eventImagePath,
         ),
       ),
