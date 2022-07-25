@@ -17,9 +17,15 @@ class EventIcon extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: acftEvent.eventName=='2.5-MILE WALK'?Icon(Icons.directions_walk,color:Theme.of(context).iconTheme.color,):SvgPicture.asset(color:Theme.of(context).iconTheme.color,
-          acftEvent.eventImagePath,
-        ),
+        child: acftEvent.eventName == '2.5-MILE WALK'
+            ? Icon(
+                Icons.directions_walk,
+                color: Theme.of(context).iconTheme.color,
+              )
+            : SvgPicture.asset(
+                color: Theme.of(context).iconTheme.color,
+                acftEvent.eventImagePath,
+              ),
       ),
     );
   }

@@ -14,6 +14,8 @@ class MyThemes {
     backgroundColor: Colors.grey.shade900,
     primaryColor: Colors.black,
     sliderTheme: SliderThemeData(
+      trackHeight: 10.0,
+      thumbShape: RoundSliderThumbShape(enabledThumbRadius: 10.0,),
       overlayColor: kAccentColor.withOpacity(.1),
       thumbColor: kAccentColor,
       activeTrackColor: kAccentColor,

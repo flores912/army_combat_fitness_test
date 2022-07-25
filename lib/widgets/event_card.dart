@@ -23,8 +23,8 @@ class EventCard extends StatelessWidget {
         GestureDetector(
           onTap: () => onTap(),
           child: Card(
-          margin: const EdgeInsets.all(0),
-          child: Padding(
+            margin: const EdgeInsets.all(0),
+            child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
                 title: Text(
@@ -39,9 +39,13 @@ class EventCard extends StatelessWidget {
             ),
           ),
         ),
-        acftEvent.eventName != 'TWO-MILE RUN (2MR)' && acftEvent.eventName !='2.5-MILE WALK'
+        acftEvent.eventName != 'TWO-MILE RUN (2MR)' &&
+                acftEvent.eventName != '2.5-MILE WALK' &&
+                acftEvent.eventName != '5K ROW' &&
+                acftEvent.eventName != '12K BIKE' &&
+                acftEvent.eventName != '1K SWIM'
             ? Container(
-          width: 1,
+                width: 1,
                 height: 16,
                 color: MyThemes.kAccentColor,
               )

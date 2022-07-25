@@ -141,7 +141,7 @@ class _AcftEventDetailsState extends State<AcftEventDetails> {
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  'Safety Tips',
+                                  'Tips',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black,

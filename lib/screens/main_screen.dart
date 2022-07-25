@@ -1,8 +1,9 @@
 import 'package:army_combat_fitness_test/screens/calculator_screen.dart';
-import 'package:army_combat_fitness_test/screens/home_screen.dart';
+import 'package:army_combat_fitness_test/screens/acft_standards_screen.dart';
 import 'package:army_combat_fitness_test/screens/statistics_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:flutter_svg/svg.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int currentIndex = 0;
   final screens = [
-    const HomeScreen(),
+    const AcftStandardsScreen(),
     const CalculatorScreen(),
     const StatisticsScreen()
   ];
@@ -33,8 +34,8 @@ class _MainScreenState extends State<MainScreen> {
         color:Theme.of(context).bottomAppBarColor,
         index: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
-        items: const [
-          Icon(Icons.home),
+        items:const
+        [ Icon(Icons.library_books),
           Icon(Icons.calculate),
           Icon(Icons.bar_chart),
         ],

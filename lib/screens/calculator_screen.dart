@@ -838,7 +838,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   //reversed due to min and max values
                   Directionality(
                     textDirection: TextDirection.rtl,
-                    child: Slider(
+                    child:Slider(
                       thumbColor: MyThemes.kAccentColor,
                       inactiveColor: MyThemes.kAccentColor,
                       activeColor: MyThemes.kAccentColor.withOpacity(.1),
