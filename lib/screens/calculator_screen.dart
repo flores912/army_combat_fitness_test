@@ -7,11 +7,14 @@ import 'package:army_combat_fitness_test/repositories/acft_events_repository.dar
 import 'package:army_combat_fitness_test/theme_provider.dart';
 import 'package:army_combat_fitness_test/widgets/event_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../models/gender.dart';
 import '../models/acft_event.dart';
 import '../models/run_calculator.dart';
 import '../models/sdc_calculator.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+
 
 class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({Key? key}) : super(key: key);
@@ -21,12 +24,15 @@ class CalculatorScreen extends StatefulWidget {
 }
 
 class _CalculatorScreenState extends State<CalculatorScreen> {
+
   //starting values
 
   AcftEventsRepository acftEventsRepository = AcftEventsRepository();
   int selectedAge = 17;
   String selectedGender = Gender.male;
   String selectedCardioEvent = '2MR';
+
+
 
   //current starting value will be matched to that of males at 17 - 21 age group
 
@@ -113,6 +119,8 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+
     List<AcftEvent> acftEventsList = acftEventsRepository.acftEventsList;
     List<AcftEvent> altAcftEventsList = acftEventsRepository.altAcftEventsList;
 
@@ -157,6 +165,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
     swimCalculator = SwimCalculator(selectedGender, selectedAge);
     maxSwimTime = Duration(minutes: 59, seconds: 59);
 
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -164,100 +173,100 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text('Gender'),
-                          DropdownButton<String>(
-                              isExpanded: true,
-                              value: selectedGender,
-                              items: genders
-                                  .map(
-                                    (gender) => DropdownMenuItem<String>(
-                                      value: gender,
-                                      child: Text(gender),
-                                    ),
-                                  )
-                                  .toList(),
-                              onChanged: (gender) => setState(() {
-                                    selectedGender = gender!;
-                                    //reset calculator
-                                    resetCalculators();
-                                  })),
-                        ],
-                      ),
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('Gender'),
+                        DropdownButton<String>(
+                            isExpanded: true,
+                            value: selectedGender,
+                            items: genders
+                                .map(
+                                  (gender) => DropdownMenuItem<String>(
+                                    value: gender,
+                                    child: Text(gender),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (gender) => setState(() {
+                                  selectedGender = gender!;
+                                  //reset calculator
+                                  resetCalculators();
+                                })),
+                      ],
                     ),
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text('Age'),
-                          DropdownButton<int>(
-                              isExpanded: true,
-                              value: selectedAge,
-                              items: ages
-                                  .map(
-                                    (age) => DropdownMenuItem<int>(
-                                      value: age,
-                                      child: age == 62
-                                          ? Text('$age+')
-                                          : Text(age.toString()),
-                                    ),
-                                  )
-                                  .toList(),
-                              onChanged: (age) => setState(() {
-                                    selectedAge = age!;
-                                    //reset calculators
-                                    resetCalculators();
-                                  })),
-                        ],
-                      ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('Age'),
+                        DropdownButton<int>(
+                            isExpanded: true,
+                            value: selectedAge,
+                            items: ages
+                                .map(
+                                  (age) => DropdownMenuItem<int>(
+                                    value: age,
+                                    child: age == 62
+                                        ? Text('$age+')
+                                        : Text(age.toString()),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (age) => setState(() {
+                                  selectedAge = age!;
+                                  //reset calculators
+                                  resetCalculators();
+                                })),
+                      ],
                     ),
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text('Cardio Event'),
-                          DropdownButton<String>(
-                              isExpanded: true,
-                              value: selectedCardioEvent,
-                              items: cardioEvents
-                                  .map(
-                                    (cardioEvent) => DropdownMenuItem<String>(
-                                      value: cardioEvent,
-                                      child: Text(cardioEvent),
-                                    ),
-                                  )
-                                  .toList(),
-                              onChanged: (cardioEvent) => setState(() {
-                                    selectedCardioEvent = cardioEvent!;
-                                    resetCalculators();
-                                  })),
-                        ],
-                      ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('Cardio Event'),
+                        DropdownButton<String>(
+                            isExpanded: true,
+                            value: selectedCardioEvent,
+                            items: cardioEvents
+                                .map(
+                                  (cardioEvent) => DropdownMenuItem<String>(
+                                    value: cardioEvent,
+                                    child: Text(cardioEvent),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (cardioEvent) => setState(() {
+                                  selectedCardioEvent = cardioEvent!;
+                                  resetCalculators();
+                                })),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            ListView.builder(
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView.builder(
                 shrinkWrap: true,
                 primary: false,
                 itemCount: 5, //all except aerobic
@@ -265,13 +274,13 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   final acftEvent = acftEventsList[index];
                   return buildCalculatorSlider(acftEvent);
                 }),
-            selectedCardioEvent == '2MR'
-                ? buildRunCalculatorSlider(acftEventsList.last):selectedCardioEvent == '2.5-MILE WALK'
-                ? buildWalkCalculatorSlider(altAcftEventsList[0]) :selectedCardioEvent=='5K ROW'
-                ? buildRowCalculatorSlider(altAcftEventsList[1]):selectedCardioEvent=='12K BIKE'
-                ? buildBikeCalculatorSlider(altAcftEventsList[2]):buildSwimCalculatorSlider(altAcftEventsList[3]),
-          ],
-        ),
+          ),
+          selectedCardioEvent == '2MR'
+              ? buildRunCalculatorSlider(acftEventsList.last):selectedCardioEvent == '2.5-MILE WALK'
+              ? buildWalkCalculatorSlider(altAcftEventsList[0]) :selectedCardioEvent=='5K ROW'
+              ? buildRowCalculatorSlider(altAcftEventsList[1]):selectedCardioEvent=='12K BIKE'
+              ? buildBikeCalculatorSlider(altAcftEventsList[2]):buildSwimCalculatorSlider(altAcftEventsList[3]),
+        ],
       ),
     );
   }

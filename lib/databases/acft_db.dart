@@ -241,7 +241,7 @@ Then, on the command of “Get set,” grab your handlebars and get ready for th
     AcftEvent(
         eventName: '1K SWIM',
         subtitle:
-            'Alternate events for Soldiers unable to run due to permanent profile.',
+            'Swim 1,000 meters in for time.',
         description:
             'If you are not able to perform the 2 Mile Run event you will have to choose one of the following Alternate Events: 2.5-MILE WALK, 5K ROW, 12K BIKE, or 1K SWIM',
         instructions:

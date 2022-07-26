@@ -41,6 +41,7 @@ dependencies:
   flutter_svg: ^1.1.0
   get: ^4.6.5
   youtube_player_flutter: ^8.1.0
+  syncfusion_flutter_charts: ^20.2.39
 
 dev_dependencies:
   flutter_test:

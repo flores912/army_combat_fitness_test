@@ -17,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
   final screens = [
     const AcftStandardsScreen(),
     const CalculatorScreen(),
-    const StatisticsScreen()
+    const StatisticsScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -28,6 +28,7 @@ class _MainScreenState extends State<MainScreen> {
         children: screens,
       ),
       bottomNavigationBar: CurvedNavigationBar(
+        height: 75,
         animationCurve: Curves.easeIn,
         animationDuration: const Duration(milliseconds: 200),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
